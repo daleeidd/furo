@@ -179,7 +179,18 @@ def _builder_inited(app: sphinx.application.Sphinx) -> None:
     if app.config.html_theme != "furo":
         return
 
-    if app.builder.format != "html":
+    builders = [
+        "html",
+        "singlehtml",
+        "dirhtml",
+        "readthedocs",
+        "readthedocsdirhtml",
+        "readthedocssinglehtml",
+        "readthedocssinglehtmllocalmedia",
+        "spelling",
+    ]
+
+    if not app.builder.format in builders:
         return
 
     builder = app.builder
