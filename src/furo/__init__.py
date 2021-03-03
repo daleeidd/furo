@@ -179,6 +179,9 @@ def _builder_inited(app: sphinx.application.Sphinx) -> None:
     if app.config.html_theme != "furo":
         return
 
+    if app.builder.format != "html":
+        return
+
     builder = app.builder
     assert builder.dark_highlighter is None, "this shouldn't happen."
     builder.dark_highlighter = PygmentsBridge("html", app.config.pygments_dark_style)
